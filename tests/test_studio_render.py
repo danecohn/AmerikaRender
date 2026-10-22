@@ -1,4 +1,4 @@
-"""Amerika Render: tool validation, AST safety, tool loop, control endpoint, and REAL headless Blender runs.
+"""Render: tool validation, AST safety, tool loop, control endpoint, and REAL headless Blender runs.
 
 Blender is found via $AMERIKA_TEST_BLENDER, `blender` on PATH, or ../tools/blender-test/blender (rootless extraction of the
 Ubuntu arm64 package). Without it the Blender tests are skipped with a clear message. No real API calls: a fake bridge answers.
@@ -18,7 +18,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-RENDER = ROOT / 'src/os/render'
+RENDER = ROOT / 'src'
 sys.path.insert(0, str(RENDER))
 from amerika_render import agent, config, control, prompt, safety, schema, session as sess, toolspecs  # noqa: E402
 
@@ -110,7 +110,7 @@ class Safety(unittest.TestCase):
 
 
 class FakeBridge:
-    """Loopback fake of the Amerika Studio bridge. `script(request_body, n)` returns the response dict."""
+    """Loopback fake of the Studio bridge. `script(request_body, n)` returns the response dict."""
 
     def __init__(self, script):
         self.script, self.requests, self.headers = script, [], []

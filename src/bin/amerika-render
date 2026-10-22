@@ -1,12 +1,12 @@
 #!/bin/sh
-# Amerika Render: Blender (GPL-3.0-or-later) + the amerika_render add-on, with its own config under ~/.config/amerika-render.
-# Blender is a trademark of the Blender Foundation; Amerika Render is not affiliated with or endorsed by it.
+# Render: Blender (GPL-3.0-or-later) + the amerika_render add-on, with its own config under ~/.config/amerika-render.
+# Blender is a trademark of the Blender Foundation; Render is not affiliated with or endorsed by it.
 SHARE=${AMERIKA_RENDER_SHARE:-/usr/share/amerika-render}
 CONF=${AMERIKA_RENDER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/amerika-render}
 BLENDER=${AMERIKA_RENDER_BLENDER:-blender}
 
 case "$1" in
-  --version|-V) echo "Amerika Render 3.1.1 (powered by $($BLENDER --version 2>/dev/null | head -1))"; exit 0 ;;
+  --version|-V) echo "Render 3.1.1 (powered by $($BLENDER --version 2>/dev/null | head -1))"; exit 0 ;;
   --about) cat "$SHARE/NOTICE"; exit 0 ;;
 esac
 

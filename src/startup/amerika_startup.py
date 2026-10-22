@@ -1,4 +1,4 @@
-"""Amerika Render startup script (passed by the launcher with --python).
+"""Render startup script (passed by the launcher with --python).
 
 Enables the amerika_render add-on, applies the Amerika theme, and opens the Amerika workspace.
 Runs inside Blender; must never raise.

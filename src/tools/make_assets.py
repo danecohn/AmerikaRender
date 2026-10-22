@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Dev-time generator for the Amerika Render icon (SVG) and splash (PNG). Output is committed.
+"""Dev-time generator for the Render icon (SVG) and splash (PNG). Output is committed.
 
     python3 tools/make_assets.py     (run from src/os/render; needs Pillow for the splash)
 """

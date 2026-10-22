@@ -1,8 +1,8 @@
 schema_version = "1.0.0"
 id = "amerika_render"
 version = "3.1.1"
-name = "Amerika Render"
-tagline = "Talk to Blender: an AI modelling assistant from Amerika Studio"
+name = "Render"
+tagline = "Talk to Blender: an AI modelling assistant from Studio"
 maintainer = "Amerika LLC <noreply@amerika.social>"
 type = "add-on"
 website = "https://www.amerika.social"
@@ -16,5 +16,5 @@ copyright = [
 tags = ["3D View", "Game Engine", "Import-Export"]
 
 [permissions]
-network = "Talks only to the local Amerika Studio bridge on 127.0.0.1 and serves a loopback control endpoint for Amerika Agent"
-files = "Reads and writes inside the Amerika Studio project folder (~/Studio/Render): exports, snapshots and screenshots"
+network = "Talks only to the local Studio bridge on 127.0.0.1 and serves a loopback control endpoint for local automation"
+files = "Reads and writes inside the Studio project folder (~/Studio/Render): exports, snapshots and screenshots"

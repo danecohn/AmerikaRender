@@ -8,8 +8,8 @@ APP = 'render'
 DEFAULT_MODEL = 'claude-sonnet-5-5'
 MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5']
 BRIDGE_DEFAULT = 'http://127.0.0.1:18890'
-NOTICE = ('Amerika Render is powered by Blender (GPL-3.0-or-later). Blender is a trademark of the Blender Foundation; '
-          'Amerika Render is not affiliated with or endorsed by the Blender Foundation.')
+NOTICE = ('Render is powered by Blender (GPL-3.0-or-later). Blender is a trademark of the Blender Foundation; '
+          'Render is not affiliated with or endorsed by the Blender Foundation.')
 
 
 def runtime_dir():
@@ -29,7 +29,7 @@ def bridge_url():
     url = os.environ.get('AMERIKA_STUDIO_BRIDGE', BRIDGE_DEFAULT).rstrip('/')
     # Only the local bridge is ever allowed.
     if not (url.startswith('http://127.0.0.1:') or url.startswith('http://localhost:') or url.startswith('http://[::1]:')):
-        raise RuntimeError('Amerika Render only talks to the local Amerika Studio bridge on 127.0.0.1')
+        raise RuntimeError('Render only talks to the local Studio bridge on 127.0.0.1')
     return url
 
 

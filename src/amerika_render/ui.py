@@ -41,14 +41,14 @@ class AmerikaPrefs(AddonPreferences):
 
     project_dir: StringProperty(name='Project folder', subtype='DIR_PATH', default='',
                                 description='Exports, renders and checkpoints stay inside this folder (default ~/Studio/Render)')
-    control_enabled: BoolProperty(name='Let Amerika Agent control Amerika Render', default=True,
+    control_enabled: BoolProperty(name='Let local automation control Render', default=True,
                                   description='Serve the loopback control endpoint (127.0.0.1, token protected)')
 
     def draw(self, context):
         col = self.layout.column()
         col.prop(self, 'project_dir')
         col.prop(self, 'control_enabled')
-        col.label(text='Talks only to the local Amerika Studio bridge (127.0.0.1:18890). No API key is stored in Blender.')
+        col.label(text='Talks only to the local Studio bridge (127.0.0.1:18890). No API key is stored in Blender.')
         wrap(col, config.NOTICE, 90)
 
 
@@ -124,7 +124,7 @@ class AMERIKA_OT_send(Operator):
 
 class AMERIKA_OT_ask(Operator):
     bl_idname = 'amerika.ask'
-    bl_label = 'Ask Amerika Render'
+    bl_label = 'Ask Render'
     bl_description = 'Type a request in a larger box and press Enter'
     text: StringProperty(name='Ask', default='')
 
@@ -203,7 +203,7 @@ class AMERIKA_OT_new_chat(Operator):
 
 class AMERIKA_OT_open_workspace(Operator):
     bl_idname = 'amerika.open_workspace'
-    bl_label = 'Open Amerika workspace'
+    bl_label = 'Open Render workspace'
 
     def execute(self, context):
         ensure_workspace(context.window)
@@ -212,14 +212,14 @@ class AMERIKA_OT_open_workspace(Operator):
 
 class AMERIKA_OT_about(Operator):
     bl_idname = 'amerika.about'
-    bl_label = 'About Amerika Render'
+    bl_label = 'About Render'
 
     def invoke(self, context, event):
         return context.window_manager.invoke_props_dialog(self, width=420, confirm_text='Close')
 
     def draw(self, context):
         col = self.layout.column()
-        col.label(text=f'Amerika Render {config.VERSION}', icon='LIGHT_SUN')
+        col.label(text=f'Render {config.VERSION}', icon='LIGHT_SUN')
         wrap(col, config.NOTICE, 56)
         wrap(col, 'Blender license: GNU GPL v3 or later. Source: https://projects.blender.org', 56)
 
@@ -249,7 +249,7 @@ def draw_chat(layout, context, wide=None):
         for line in lines[:16]:
             col.label(text=short(line.replace('\t', '    '), w + 8))
         if len(lines) > 16:
-            col.label(text=f'... {len(lines) - 16} more lines (Text Editor: "Amerika Review")')
+            col.label(text=f'... {len(lines) - 16} more lines (Text Editor: "Render Review")')
         row = rb.row(align=True)
         row.scale_y = 1.4
         row.operator('amerika.approve', text='Run', icon='PLAY')
@@ -286,7 +286,7 @@ def _mirror_review_text(code):
         return
     _state['review_text'] = code
     try:
-        t = bpy.data.texts.get('Amerika Review') or bpy.data.texts.new('Amerika Review')
+        t = bpy.data.texts.get('Render Review') or bpy.data.texts.new('Render Review')
         t.clear()
         t.write(code)
     except Exception:
@@ -294,11 +294,11 @@ def _mirror_review_text(code):
 
 
 class AMERIKA_PT_chat(Panel):
-    bl_label = 'Amerika Render'
+    bl_label = 'Render'
     bl_idname = 'AMERIKA_PT_chat'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Amerika'
+    bl_category = 'Render'
 
     def draw_header(self, context):
         self.layout.label(icon='LIGHT_SUN')
@@ -312,7 +312,7 @@ class AMERIKA_PT_workflows(Panel):
     bl_idname = 'AMERIKA_PT_workflows'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Amerika'
+    bl_category = 'Render'
 
     def draw(self, context):
         s = S()
@@ -329,7 +329,7 @@ class AMERIKA_PT_options(Panel):
     bl_idname = 'AMERIKA_PT_options'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Amerika'
+    bl_category = 'Render'
     bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
@@ -352,7 +352,7 @@ class AMERIKA_PT_log(Panel):
     bl_idname = 'AMERIKA_PT_log'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Amerika'
+    bl_category = 'Render'
     bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
@@ -410,7 +410,7 @@ def ensure_workspace(window=None):
     window = window or (wm.windows[0] if wm.windows else None)
     if window is None:
         return None
-    ws = bpy.data.workspaces.get('Amerika')
+    ws = bpy.data.workspaces.get('Render')
     if ws is None:
         base = bpy.data.workspaces.get('Layout') or window.workspace
         window.workspace = base
@@ -421,7 +421,7 @@ def ensure_workspace(window=None):
         if not new:
             return None
         ws = new[0]
-        ws.name = 'Amerika'
+        ws.name = 'Render'
         window.workspace = ws
         _layout_workspace(ws)
     else:
@@ -475,7 +475,7 @@ def _apply_defaults_once():
 
 def _in_amerika_ws(context):
     ws = getattr(context, 'workspace', None)
-    return bool(ws) and ws.name == 'Amerika'
+    return bool(ws) and ws.name == 'Render'
 
 
 def _variants():

@@ -28,7 +28,7 @@ class Cancelled(RuntimeError):
 
 
 class Bridge:
-    """POST /v1/messages to the local Amerika Studio bridge with the per-user token. Never holds an API key."""
+    """POST /v1/messages to the local Studio bridge with the per-user token. Never holds an API key."""
 
     def __init__(self, url=None, token=None, app=config.APP, timeout=300):
         self.url = (url or config.bridge_url()).rstrip('/')
@@ -61,12 +61,12 @@ class Bridge:
             except Exception:
                 msg = ''
             hint = {401: 'the Studio bridge rejected the token: is amerika-studio-bridge running for this user?',
-                    403: 'no Anthropic key for Amerika Render: open Amerika Studio > Keys.',
+                    403: 'no Anthropic key for Render: open Studio > Keys.',
                     429: 'rate limited or daily token budget reached.',
                     529: 'the model is overloaded; try again.'}.get(e.code, '')
             raise BridgeError(f'bridge error {e.code}: {msg or hint or e.reason}' + (f' ({hint})' if msg and hint else ''), e.code) from None
         except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
-            raise BridgeError('cannot reach the Amerika Studio bridge on 127.0.0.1 (start amerika-studio-bridge): ' + str(getattr(e, 'reason', e))) from None
+            raise BridgeError('cannot reach the Studio bridge on 127.0.0.1 (start amerika-studio-bridge): ' + str(getattr(e, 'reason', e))) from None
 
 
 def _text_of(content):

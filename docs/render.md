@@ -1,6 +1,6 @@
-# Amerika Render
+# Render
 
-Amerika Render is **upstream Blender** (Ubuntu `blender` 5.0.1, GPL-3.0-or-later) plus the **`amerika_render` add-on**,
+Render is **upstream Blender** (Ubuntu `blender` 5.0.1, GPL-3.0-or-later) plus the **`amerika_render` add-on**,
 a launcher, an Amerika theme, splash and startup file. It is not a source fork. "Blender" is a trademark of the Blender
 Foundation; Amerika Render is not affiliated with or endorsed by it (notice in About, `NOTICE`, package copyright).
 
@@ -46,7 +46,7 @@ wireframes are drawn in software (numpy) because Workbench cannot draw them. **R
 System prompt (`prompt.py`): plan -> scene_info -> build -> screenshot -> critique -> fix, metres/Z-up, naming, game-ready topology and budgets, pivot at base, scale applied,
 Godot/glTF conventions, rigs only on request. Workflows (panel buttons and `render.model.*`): Describe a model, Change the model, Make game-ready, Rig basic armature + idle/walk/attack.
 
-## Control endpoint (for Amerika Agent)
+## Control endpoint (for local automation)
 
 Started by the add-on in GUI sessions (disable: preference, or `AMERIKA_RENDER_NO_CONTROL=1`). Loopback `127.0.0.1:<free port>`, `POST /rpc`, `Authorization: Bearer <token>`,
 JSON-RPC 2.0, Host must be loopback and no `Origin`. Descriptor `$XDG_RUNTIME_DIR/amerika/studio-render.json` (0600, `{app,url,token,pid,version}`), removed on exit.

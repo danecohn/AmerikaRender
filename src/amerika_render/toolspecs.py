@@ -1,4 +1,4 @@
-"""Tool definitions (names, descriptions, JSON schemas, risk) for the Amerika Render assistant. No bpy here."""
+"""Tool definitions (names, descriptions, JSON schemas, risk) for the Render assistant. No bpy here."""
 
 V3 = {'type': 'array', 'items': {'type': 'number'}, 'minItems': 3, 'maxItems': 3}
 COLOR = {'type': ['array', 'string'], 'items': {'type': 'number'}, 'minItems': 3, 'maxItems': 4,

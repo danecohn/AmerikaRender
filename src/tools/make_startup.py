@@ -24,7 +24,7 @@ def go():
 def save():
     # drop the transient review text so the template starts clean
     for t in list(bpy.data.texts):
-        if t.name == 'Amerika Review':
+        if t.name == 'Render Review':
             t.clear()
     bpy.ops.wm.save_homefile()
     print('amerika startup.blend saved')
