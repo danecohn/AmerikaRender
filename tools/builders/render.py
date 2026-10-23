@@ -19,7 +19,7 @@ def register(b):
                   'Talk to Blender: describe a model and the assistant builds, looks at and refines it with real Blender tools, '
                   'then exports game-ready .glb files to your Studio project. Powered by Blender (GPL-3.0-or-later); '
                   'Blender is a trademark of the Blender Foundation and Render is not affiliated with or endorsed by it.',
-                  arch='all', title='Render', category='Graphics', section='graphics',
+                  arch='all', title='AltStack Render', category='Graphics', section='graphics',
                   depends=f'amerika-studio (>= {b.DE_VERSION}), blender (>= 5.0), python3, python3-numpy')
         addon = src / 'amerika_render'
         files = sorted(f for f in addon.iterdir() if f.is_file() and f.suffix in ('.py', '.toml'))
@@ -54,7 +54,7 @@ def register(b):
                                'fi\nexit 0\n')
         p.copyright('Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/\n'
                     'Upstream-Name: Render\n\n'
-                    'Files: *\nCopyright: 2026 Amerika LLC\nLicense: GPL-3.0-or-later\n'
+                    'Files: *\nCopyright: 2026 AltStack LLC\nLicense: GPL-3.0-or-later\n'
                     ' On Debian and Ubuntu systems the full text of the GNU General Public License version 3 is in\n'
                     ' /usr/share/common-licenses/GPL-3.\n\n'
                     'Notice: Render is powered by Blender (GPL-3.0-or-later). Blender is a trademark of the\n'
