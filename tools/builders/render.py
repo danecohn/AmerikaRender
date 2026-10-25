@@ -40,6 +40,7 @@ def register(b):
         p.copy(src / 'data/startup.blend', f'{SHARE}/startup.blend', 0o644)
         p.copy(src / 'NOTICE', f'{SHARE}/NOTICE', 0o644)
         p.copy(src / 'bin/amerika-render', '/usr/bin/amerika-render', 0o755)
+        p.copy(src / 'icons/artemis-render.png', '/usr/share/icons/hicolor/512x512/apps/artemis-render.png')
         p.copy(src / 'applications/amerika-render.desktop', '/usr/share/applications/amerika-render.desktop', 0o644)
         p.copy(src / 'NOTICE', f'/usr/share/doc/{NAME}/NOTICE', 0o644)
         docs = b.ROOT / 'docs/studio/render.md'
