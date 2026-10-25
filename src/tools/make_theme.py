@@ -18,19 +18,19 @@ def hexc(h):
 
 
 # palette taken from the Amerika OS icons: warm night sky, hot-pink sun, amber neon, chrome rim
-BG = hexc('#0e0810')
-BG2 = hexc('#150f1b')
-HEADER = hexc('#1c1426')
-PANEL = hexc('#251b32')
-PANEL_HI = hexc('#33264a')
-OUTLINE = hexc('#0a0610')
-TEXT = hexc('#e9e4f2')
-TEXT_DIM = hexc('#9c93b3')
-CHROME = hexc('#cfcfe4')
-AMBER = hexc('#ffb02e')
-PINK = hexc('#ff3d6e')
-CYAN = hexc('#4fd8ff')
-GRID = hexc('#2a2038')
+BG = hexc('#14252f')
+BG2 = hexc('#192e38')
+HEADER = hexc('#203640')
+PANEL = hexc('#29434a')
+PANEL_HI = hexc('#3b545a')
+OUTLINE = hexc('#10212a')
+TEXT = hexc('#eef2e9')
+TEXT_DIM = hexc('#b0c0bb')
+CHROME = hexc('#dce8e5')
+AMBER = hexc('#b89463')
+PINK = hexc('#8faeb4')
+CYAN = hexc('#a1c1c1')
+GRID = hexc('#3b545a')
 
 MAP = {
     # generic space colours
@@ -42,7 +42,7 @@ MAP = {
     'outline': OUTLINE, 'inner': PANEL, 'inner_sel': hexc('#a8294f'), 'item': AMBER, 'text_sel': (1, 1, 1),
     # 3D view and friends
     'object_selected': AMBER, 'object_active': hexc('#fff0cf'), 'vertex_select': AMBER, 'edge_select': AMBER, 'face_select': PINK,
-    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#ffb02e'),
+    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#b89463'),
     'selected_highlight': PANEL_HI, 'active': PINK, 'selected': AMBER, 'handle_vertex_select': AMBER,
     'frame_current': PINK, 'time_marker_line_selected': AMBER, 'cursor': AMBER, 'space_active': PINK,
     'lastsel_point': hexc('#fff0cf'), 'dopesheet_channel': PANEL, 'summary': HEADER,
@@ -88,7 +88,7 @@ try:
     g = theme.view_3d.space.gradients
     g.background_type = 'LINEAR'
     g.high_gradient = hexc('#2a1a3a')
-    g.gradient = hexc('#0e0810')
+    g.gradient = hexc('#14252f')
     count += 2
 except Exception as e:
     print('gradient skipped', e)
