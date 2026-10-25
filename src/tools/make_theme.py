@@ -18,19 +18,19 @@ def hexc(h):
 
 
 # palette taken from the Amerika OS icons: warm night sky, hot-pink sun, amber neon, chrome rim
-BG = hexc('#14252f')
-BG2 = hexc('#192e38')
-HEADER = hexc('#203640')
-PANEL = hexc('#29434a')
-PANEL_HI = hexc('#3b545a')
+BG = hexc('#17191f')
+BG2 = hexc('#1d2028')
+HEADER = hexc('#252933')
+PANEL = hexc('#303744')
+PANEL_HI = hexc('#414b5c')
 OUTLINE = hexc('#10212a')
-TEXT = hexc('#eef2e9')
-TEXT_DIM = hexc('#b0c0bb')
-CHROME = hexc('#dce8e5')
+TEXT = hexc('#f5f5f7')
+TEXT_DIM = hexc('#bac4d4')
+CHROME = hexc('#eaf2ff')
 AMBER = hexc('#b89463')
 PINK = hexc('#8faeb4')
-CYAN = hexc('#a1c1c1')
-GRID = hexc('#3b545a')
+CYAN = hexc('#77baff')
+GRID = hexc('#414b5c')
 
 MAP = {
     # generic space colours
@@ -88,7 +88,7 @@ try:
     g = theme.view_3d.space.gradients
     g.background_type = 'LINEAR'
     g.high_gradient = hexc('#2a1a3a')
-    g.gradient = hexc('#14252f')
+    g.gradient = hexc('#17191f')
     count += 2
 except Exception as e:
     print('gradient skipped', e)
