@@ -452,7 +452,7 @@ def _layout_workspace(ws):
                 outliner = area
         if outliner is not None:
             try:
-                with bpy.context.temp_override(window=win, screen=win.screen, area=outliner, region=outliner.regions[-1]):
+                with bpy.context.temp_override(window=win, screen=win.screen, area=outliner, region=next(r for r in outliner.regions if r.type == 'WINDOW')):
                     bpy.ops.screen.area_move(x=outliner.x, y=outliner.y + outliner.height // 2, delta=-330)
             except Exception as e:  # layout is cosmetic
                 print('amerika_render: could not widen the chat column:', e)

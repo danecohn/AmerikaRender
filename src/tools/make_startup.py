@@ -6,6 +6,8 @@ Saves the home file (startup.blend) with the 'Vigil Render' workspace active, an
 Copy <tmp>/config/startup.blend to data/startup.blend.
 """
 import os
+import shutil
+import subprocess
 import bpy
 
 
@@ -32,7 +34,10 @@ def save():
     if screenshot:
         with bpy.context.temp_override(window=bpy.context.window_manager.windows[0]):
             bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=3)
-            bpy.ops.screen.screenshot(filepath=screenshot)
+            if os.environ.get('DISPLAY') and shutil.which('scrot'):
+                subprocess.run(['scrot', '--overwrite', screenshot], check=True)
+            else:
+                bpy.ops.screen.screenshot(filepath=screenshot)
     bpy.ops.wm.save_homefile()
     print('Vigil Render startup template saved')
     bpy.ops.wm.quit_blender()
