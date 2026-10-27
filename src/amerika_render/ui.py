@@ -403,14 +403,16 @@ def ensure_timers():
 
 
 def ensure_workspace(window=None):
-    """Create (once) and activate the 'Amerika' workspace: a 3D view with the Amerika tab open. GUI sessions only."""
+    """Use the Vigil Render template; keep workspaces in existing user files intact."""
     if bpy.app.background:
         return None
     wm = bpy.context.window_manager
     window = window or (wm.windows[0] if wm.windows else None)
     if window is None:
         return None
-    ws = bpy.data.workspaces.get('Render')
+    ws = bpy.data.workspaces.get('Vigil Render')
+    if ws is None and bpy.data.filepath:
+        ws = bpy.data.workspaces.get('Render') or bpy.data.workspaces.get('Amerika')
     if ws is None:
         base = bpy.data.workspaces.get('Layout') or window.workspace
         window.workspace = base
@@ -421,7 +423,7 @@ def ensure_workspace(window=None):
         if not new:
             return None
         ws = new[0]
-        ws.name = 'Render'
+        ws.name = 'Vigil Render'
         window.workspace = ws
         _layout_workspace(ws)
     else:
@@ -450,7 +452,7 @@ def _layout_workspace(ws):
                 outliner = area
         if outliner is not None:
             try:
-                with bpy.context.temp_override(window=win, screen=win.screen, area=outliner, region=outliner.regions[-1]):
+                with bpy.context.temp_override(window=win, screen=win.screen, area=outliner, region=next(r for r in outliner.regions if r.type == 'WINDOW')):
                     bpy.ops.screen.area_move(x=outliner.x, y=outliner.y + outliner.height // 2, delta=-330)
             except Exception as e:  # layout is cosmetic
                 print('amerika_render: could not widen the chat column:', e)
@@ -475,13 +477,13 @@ def _apply_defaults_once():
 
 def _in_amerika_ws(context):
     ws = getattr(context, 'workspace', None)
-    return bool(ws) and ws.name == 'Render'
+    return bool(ws) and ws.name in {'Vigil Render', 'Render', 'Amerika'}
 
 
 def _variants():
-    """Blender cannot select a sidebar tab from Python. So the 'Amerika' workspace shows the same panels in a wide Properties
+    """Blender cannot select a sidebar tab from Python. So the Vigil Render workspace shows the same panels in a wide Properties
     editor (its 'Scene' tab, selected from Python) next to the 3D viewport. In every other workspace they live in the 3D
-    viewport's 'Amerika' sidebar tab."""
+    viewport's Vigil Render sidebar tab."""
     out = []
     for n, cls in enumerate((AMERIKA_PT_chat, AMERIKA_PT_workflows, AMERIKA_PT_options, AMERIKA_PT_log)):
         ws = type(cls.__name__ + '_WS', (cls,), {
