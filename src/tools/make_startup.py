@@ -31,6 +31,7 @@ def save():
     screenshot=os.environ.get('VIGIL_RENDER_SCREENSHOT')
     if screenshot:
         with bpy.context.temp_override(window=bpy.context.window_manager.windows[0]):
+            bpy.ops.wm.redraw_timer(type='DRAW_WIN_SWAP', iterations=3)
             bpy.ops.screen.screenshot(filepath=screenshot)
     bpy.ops.wm.save_homefile()
     print('Vigil Render startup template saved')

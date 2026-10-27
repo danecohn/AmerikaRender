@@ -477,13 +477,13 @@ def _apply_defaults_once():
 
 def _in_amerika_ws(context):
     ws = getattr(context, 'workspace', None)
-    return bool(ws) and ws.name == 'Render'
+    return bool(ws) and ws.name in {'Vigil Render', 'Render', 'Amerika'}
 
 
 def _variants():
-    """Blender cannot select a sidebar tab from Python. So the 'Amerika' workspace shows the same panels in a wide Properties
+    """Blender cannot select a sidebar tab from Python. So the Vigil Render workspace shows the same panels in a wide Properties
     editor (its 'Scene' tab, selected from Python) next to the 3D viewport. In every other workspace they live in the 3D
-    viewport's 'Amerika' sidebar tab."""
+    viewport's Vigil Render sidebar tab."""
     out = []
     for n, cls in enumerate((AMERIKA_PT_chat, AMERIKA_PT_workflows, AMERIKA_PT_options, AMERIKA_PT_log)):
         ws = type(cls.__name__ + '_WS', (cls,), {
