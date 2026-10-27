@@ -124,7 +124,7 @@ class AMERIKA_OT_send(Operator):
 
 class AMERIKA_OT_ask(Operator):
     bl_idname = 'amerika.ask'
-    bl_label = 'Ask Render'
+    bl_label = 'Ask Cohnsoft Render'
     bl_description = 'Type a request in a larger box and press Enter'
     text: StringProperty(name='Ask', default='')
 
@@ -212,14 +212,14 @@ class AMERIKA_OT_open_workspace(Operator):
 
 class AMERIKA_OT_about(Operator):
     bl_idname = 'amerika.about'
-    bl_label = 'About Render'
+    bl_label = 'About Cohnsoft Render'
 
     def invoke(self, context, event):
         return context.window_manager.invoke_props_dialog(self, width=420, confirm_text='Close')
 
     def draw(self, context):
         col = self.layout.column()
-        col.label(text=f'Render {config.VERSION}', icon='LIGHT_SUN')
+        col.label(text=f'Cohnsoft Render {config.VERSION}', icon='LIGHT_SUN')
         wrap(col, config.NOTICE, 56)
         wrap(col, 'Blender license: GNU GPL v3 or later. Source: https://projects.blender.org', 56)
 
@@ -294,11 +294,11 @@ def _mirror_review_text(code):
 
 
 class AMERIKA_PT_chat(Panel):
-    bl_label = 'Render'
+    bl_label = 'Cohnsoft Render'
     bl_idname = 'AMERIKA_PT_chat'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Render'
+    bl_category = 'Cohnsoft'
 
     def draw_header(self, context):
         self.layout.label(icon='LIGHT_SUN')
@@ -312,7 +312,7 @@ class AMERIKA_PT_workflows(Panel):
     bl_idname = 'AMERIKA_PT_workflows'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Render'
+    bl_category = 'Cohnsoft'
 
     def draw(self, context):
         s = S()
@@ -329,7 +329,7 @@ class AMERIKA_PT_options(Panel):
     bl_idname = 'AMERIKA_PT_options'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Render'
+    bl_category = 'Cohnsoft'
     bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
@@ -352,7 +352,7 @@ class AMERIKA_PT_log(Panel):
     bl_idname = 'AMERIKA_PT_log'
     bl_space_type = 'VIEW_3D'
     bl_region_type = 'UI'
-    bl_category = 'Render'
+    bl_category = 'Cohnsoft'
     bl_options = {'DEFAULT_CLOSED'}
 
     def draw(self, context):
