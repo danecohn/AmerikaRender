@@ -1,4 +1,4 @@
-"""Dev-time generator: builds theme/amerika.xml (Blender interface theme preset) from the Amerika OS palette.
+"""Dev-time generator: builds theme/amerika.xml (Blender interface theme preset) from the VigilTech palette.
 
     blender -b --factory-startup --python tools/make_theme.py -- theme/amerika.xml
 
@@ -17,20 +17,20 @@ def hexc(h):
     return tuple(int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
 
 
-# Cohnsoft neutral surfaces and accessible green accents
-BG = hexc('#1c1c1e')
-BG2 = hexc('#242426')
-HEADER = hexc('#2c2c2e')
-PANEL = hexc('#353538')
-PANEL_HI = hexc('#48484a')
-OUTLINE = hexc('#161618')
-TEXT = hexc('#f2f2f7')
-TEXT_DIM = hexc('#b4b4bb')
-CHROME = hexc('#f2f2f7')
-AMBER = hexc('#3fd477')
-PINK = hexc('#3fd477')
-CYAN = hexc('#3fd477')
-GRID = hexc('#48484a')
+# VigilTech plum-black surfaces and pink accents (all text pairs >= 4.5:1)
+BG = hexc('#120a14')
+BG2 = hexc('#1e1422')
+HEADER = hexc('#281a2c')
+PANEL = hexc('#33233a')
+PANEL_HI = hexc('#4a3453')
+OUTLINE = hexc('#0c060e')
+TEXT = hexc('#f6f1f4')
+TEXT_DIM = hexc('#cdbfca')
+CHROME = hexc('#f6f1f4')
+AMBER = hexc('#ffd6e4')  # text on selection
+PINK = hexc('#ff4d86')
+CYAN = hexc('#ff4d86')
+GRID = hexc('#4a3453')
 
 MAP = {
     # generic space colours
@@ -39,14 +39,14 @@ MAP = {
     'tab_active': PANEL_HI, 'tab_inactive': HEADER, 'tab_back': BG, 'tab_outline': OUTLINE,
     'navigation_bar': BG, 'execution_buts': PANEL, 'tab_active_text': AMBER,
     # widgets
-    'outline': OUTLINE, 'inner': PANEL, 'inner_sel': hexc('#0a7a37'), 'item': AMBER, 'text_sel': (1, 1, 1),
+    'outline': OUTLINE, 'inner': PANEL, 'inner_sel': hexc('#d6004a'), 'item': hexc('#d6004a'), 'text_sel': (1, 1, 1),
     # 3D view and friends
-    'object_selected': AMBER, 'object_active': hexc('#b7ecc9'), 'vertex_select': AMBER, 'edge_select': AMBER, 'face_select': PINK,
-    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#3fd477'),
+    'object_selected': AMBER, 'object_active': hexc('#ffd6e4'), 'vertex_select': AMBER, 'edge_select': AMBER, 'face_select': PINK,
+    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#ff4d86'),
     'selected_highlight': PANEL_HI, 'active': PINK, 'selected': AMBER, 'handle_vertex_select': AMBER,
     'frame_current': PINK, 'time_marker_line_selected': AMBER, 'cursor': AMBER, 'space_active': PINK,
-    'lastsel_point': hexc('#b7ecc9'), 'dopesheet_channel': PANEL, 'summary': HEADER,
-    'panel_back': hexc('#242426'), 'panel_header': HEADER, 'panel_sub_back': hexc('#211a2c'), 'panel_title': CHROME, 'panel_text': TEXT,
+    'lastsel_point': hexc('#ffd6e4'), 'dopesheet_channel': PANEL, 'summary': HEADER,
+    'panel_back': hexc('#1e1422'), 'panel_header': HEADER, 'panel_sub_back': hexc('#281a2c'), 'panel_title': CHROME, 'panel_text': TEXT,
     'row_alternate': (1, 1, 1),
 }
 KEEP_ALPHA = True
@@ -87,8 +87,8 @@ paint(theme)
 try:
     g = theme.view_3d.space.gradients
     g.background_type = 'LINEAR'
-    g.high_gradient = hexc('#2a1a3a')
-    g.gradient = hexc('#1c1c1e')
+    g.high_gradient = hexc('#3d0016')
+    g.gradient = hexc('#120a14')
     count += 2
 except Exception as e:
     print('gradient skipped', e)

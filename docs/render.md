@@ -2,7 +2,7 @@
 
 Render is **upstream Blender** (Ubuntu `blender` 5.0.1, GPL-3.0-or-later) plus the **`amerika_render` add-on**,
 a launcher, an Amerika theme, splash and startup file. It is not a source fork. "Blender" is a trademark of the Blender
-Foundation; Amerika Render is not affiliated with or endorsed by it (notice in About, `NOTICE`, package copyright).
+Foundation; Vigil Render is not affiliated with or endorsed by it (notice in About, `NOTICE`, package copyright).
 
 ## Files
 

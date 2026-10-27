@@ -6,7 +6,7 @@ CONF=${AMERIKA_RENDER_CONFIG:-${XDG_CONFIG_HOME:-$HOME/.config}/amerika-render}
 BLENDER=${AMERIKA_RENDER_BLENDER:-blender}
 
 case "$1" in
-  --version|-V) echo "Cohnsoft Render 3.1.1 (powered by $($BLENDER --version 2>/dev/null | head -1))"; exit 0 ;;
+  --version|-V) echo "Vigil Render 3.1.1 (powered by $($BLENDER --version 2>/dev/null | head -1))"; exit 0 ;;
   --about) cat "$SHARE/NOTICE"; exit 0 ;;
 esac
 

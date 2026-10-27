@@ -1,11 +1,11 @@
 [Desktop Entry]
 Type=Application
 Version=1.0
-Name=Cohnsoft Render
+Name=Vigil Render
 GenericName=3D Modelling Assistant
 Comment=Talk to Blender: describe a model and watch it appear (powered by Blender)
 Exec=amerika-render %f
-Icon=artemis-render
+Icon=vigil-render
 Terminal=false
 Categories=Graphics;3DGraphics;
 MimeType=application/x-blender;

@@ -1,6 +1,6 @@
 """Render startup script (passed by the launcher with --python).
 
-Enables the amerika_render add-on, applies the Cohnsoft theme, and opens the Amerika workspace.
+Enables the amerika_render add-on, applies the VigilTech theme, and opens the Amerika workspace.
 Runs inside Blender; must never raise.
 """
 import os
@@ -33,7 +33,7 @@ def _prefs():
     try:
         p = bpy.context.preferences
         p.view.show_splash = True
-        font = os.path.join(SHARE, 'scripts', 'addons', 'amerika_render', 'cohnsoft', 'fonts', 'CohnSans-Regular.ttf')
+        font = os.path.join(SHARE, 'scripts', 'addons', 'amerika_render', 'vigiltech', 'fonts', 'VigilSans-Regular.ttf')
         if not p.view.font_path_ui and os.path.isfile(font):
             p.view.font_path_ui = font
         p.view.show_tooltips_python = False

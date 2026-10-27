@@ -15,11 +15,11 @@ def register(b):
 
     def build():
         p = b.Pkg(NAME, b.DE_VERSION,
-                  'Cohnsoft Render: Blender with an AI modelling assistant\n'
+                  'Vigil Render: Blender with an AI modelling assistant\n'
                   'Talk to Blender: describe a model and the assistant builds, looks at and refines it with real Blender tools, '
                   'then exports game-ready .glb files to your Studio project. Powered by Blender (GPL-3.0-or-later); '
                   'Blender is a trademark of the Blender Foundation and Render is not affiliated with or endorsed by it.',
-                  arch='all', title='Cohnsoft Render', category='Graphics', section='graphics',
+                  arch='all', title='Vigil Render', category='Graphics', section='graphics',
                   depends=f'amerika-studio (>= {b.DE_VERSION}), blender (>= 5.0), python3, python3-numpy')
         addon = src / 'amerika_render'
         files = sorted(f for f in addon.rglob('*') if f.is_file() and '__pycache__' not in f.parts and f.suffix != '.pyc')
@@ -40,7 +40,8 @@ def register(b):
         p.copy(src / 'data/startup.blend', f'{SHARE}/startup.blend', 0o644)
         p.copy(src / 'NOTICE', f'{SHARE}/NOTICE', 0o644)
         p.copy(src / 'bin/amerika-render', '/usr/bin/amerika-render', 0o755)
-        p.copy(src / 'icons/artemis-render.png', '/usr/share/icons/hicolor/512x512/apps/artemis-render.png')
+        for n in (16, 32, 48, 64, 128, 256, 512):
+            p.copy(src / f'icons/hicolor/{n}x{n}/apps/vigil-render.png', f'/usr/share/icons/hicolor/{n}x{n}/apps/vigil-render.png')
         p.copy(src / 'applications/amerika-render.desktop', '/usr/share/applications/amerika-render.desktop', 0o644)
         p.copy(src / 'NOTICE', f'/usr/share/doc/{NAME}/NOTICE', 0o644)
         docs = b.ROOT / 'docs/studio/render.md'
@@ -55,7 +56,7 @@ def register(b):
                                'fi\nexit 0\n')
         p.copyright('Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/\n'
                     'Upstream-Name: Render\n\n'
-                    'Files: *\nCopyright: 2026 Amerika LLC\nLicense: GPL-3.0-or-later\n'
+                    'Files: *\nCopyright: 2026 VigilTech\nLicense: GPL-3.0-or-later\n'
                     ' On Debian and Ubuntu systems the full text of the GNU General Public License version 3 is in\n'
                     ' /usr/share/common-licenses/GPL-3.\n\n'
                     'Notice: Render is powered by Blender (GPL-3.0-or-later). Blender is a trademark of the\n'
