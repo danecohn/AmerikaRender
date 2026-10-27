@@ -17,20 +17,20 @@ def hexc(h):
     return tuple(int(h[i:i + 2], 16) / 255 for i in (0, 2, 4))
 
 
-# palette taken from the Amerika OS icons: warm night sky, hot-pink sun, amber neon, chrome rim
-BG = hexc('#17191f')
-BG2 = hexc('#1d2028')
-HEADER = hexc('#252933')
-PANEL = hexc('#303744')
-PANEL_HI = hexc('#414b5c')
-OUTLINE = hexc('#10212a')
-TEXT = hexc('#f5f5f7')
-TEXT_DIM = hexc('#bac4d4')
-CHROME = hexc('#eaf2ff')
-AMBER = hexc('#b89463')
-PINK = hexc('#8faeb4')
-CYAN = hexc('#77baff')
-GRID = hexc('#414b5c')
+# Cohnsoft neutral surfaces and accessible green accents
+BG = hexc('#1c1c1e')
+BG2 = hexc('#242426')
+HEADER = hexc('#2c2c2e')
+PANEL = hexc('#353538')
+PANEL_HI = hexc('#48484a')
+OUTLINE = hexc('#161618')
+TEXT = hexc('#f2f2f7')
+TEXT_DIM = hexc('#b4b4bb')
+CHROME = hexc('#f2f2f7')
+AMBER = hexc('#3fd477')
+PINK = hexc('#3fd477')
+CYAN = hexc('#3fd477')
+GRID = hexc('#48484a')
 
 MAP = {
     # generic space colours
@@ -39,14 +39,14 @@ MAP = {
     'tab_active': PANEL_HI, 'tab_inactive': HEADER, 'tab_back': BG, 'tab_outline': OUTLINE,
     'navigation_bar': BG, 'execution_buts': PANEL, 'tab_active_text': AMBER,
     # widgets
-    'outline': OUTLINE, 'inner': PANEL, 'inner_sel': hexc('#a8294f'), 'item': AMBER, 'text_sel': (1, 1, 1),
+    'outline': OUTLINE, 'inner': PANEL, 'inner_sel': hexc('#0a7a37'), 'item': AMBER, 'text_sel': (1, 1, 1),
     # 3D view and friends
-    'object_selected': AMBER, 'object_active': hexc('#fff0cf'), 'vertex_select': AMBER, 'edge_select': AMBER, 'face_select': PINK,
-    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#b89463'),
+    'object_selected': AMBER, 'object_active': hexc('#b7ecc9'), 'vertex_select': AMBER, 'edge_select': AMBER, 'face_select': PINK,
+    'grid': GRID, 'wire': hexc('#000000'), 'wire_edit': hexc('#000000'), 'transform': PINK, 'light': hexc('#3fd477'),
     'selected_highlight': PANEL_HI, 'active': PINK, 'selected': AMBER, 'handle_vertex_select': AMBER,
     'frame_current': PINK, 'time_marker_line_selected': AMBER, 'cursor': AMBER, 'space_active': PINK,
-    'lastsel_point': hexc('#fff0cf'), 'dopesheet_channel': PANEL, 'summary': HEADER,
-    'panel_back': hexc('#1a1323'), 'panel_header': HEADER, 'panel_sub_back': hexc('#211a2c'), 'panel_title': CHROME, 'panel_text': TEXT,
+    'lastsel_point': hexc('#b7ecc9'), 'dopesheet_channel': PANEL, 'summary': HEADER,
+    'panel_back': hexc('#242426'), 'panel_header': HEADER, 'panel_sub_back': hexc('#211a2c'), 'panel_title': CHROME, 'panel_text': TEXT,
     'row_alternate': (1, 1, 1),
 }
 KEEP_ALPHA = True
@@ -88,7 +88,7 @@ try:
     g = theme.view_3d.space.gradients
     g.background_type = 'LINEAR'
     g.high_gradient = hexc('#2a1a3a')
-    g.gradient = hexc('#17191f')
+    g.gradient = hexc('#1c1c1e')
     count += 2
 except Exception as e:
     print('gradient skipped', e)

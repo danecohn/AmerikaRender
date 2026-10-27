@@ -15,21 +15,21 @@ def register(b):
 
     def build():
         p = b.Pkg(NAME, b.DE_VERSION,
-                  'Render: Blender with an AI modelling assistant\n'
+                  'Cohnsoft Render: Blender with an AI modelling assistant\n'
                   'Talk to Blender: describe a model and the assistant builds, looks at and refines it with real Blender tools, '
                   'then exports game-ready .glb files to your Studio project. Powered by Blender (GPL-3.0-or-later); '
                   'Blender is a trademark of the Blender Foundation and Render is not affiliated with or endorsed by it.',
-                  arch='all', title='Render', category='Graphics', section='graphics',
+                  arch='all', title='Cohnsoft Render', category='Graphics', section='graphics',
                   depends=f'amerika-studio (>= {b.DE_VERSION}), blender (>= 5.0), python3, python3-numpy')
         addon = src / 'amerika_render'
-        files = sorted(f for f in addon.iterdir() if f.is_file() and f.suffix in ('.py', '.toml'))
+        files = sorted(f for f in addon.rglob('*') if f.is_file() and '__pycache__' not in f.parts and f.suffix != '.pyc')
         for f in files:
-            p.copy(f, f'{SHARE}/scripts/addons/amerika_render/{f.name}', 0o644)
+            p.copy(f, f'{SHARE}/scripts/addons/amerika_render/{f.relative_to(addon).as_posix()}', 0o644)
         # Blender 4.2+ extension zip (Install from Disk), same files at the archive root.
         buf = io.BytesIO()
         with zipfile.ZipFile(buf, 'w', zipfile.ZIP_DEFLATED) as z:
             for f in files:
-                z.writestr(zipfile.ZipInfo(f.name, (2026, 10, 21, 0, 0, 0)), f.read_bytes())
+                z.writestr(zipfile.ZipInfo(f.relative_to(addon).as_posix(), (2026, 10, 21, 0, 0, 0)), f.read_bytes())
         zpath = p.path(f'{SHARE}/extension/amerika_render-{b.DE_VERSION}.zip')
         zpath.parent.mkdir(parents=True, exist_ok=True)
         zpath.write_bytes(buf.getvalue())
