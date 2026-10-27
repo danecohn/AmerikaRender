@@ -1,6 +1,6 @@
 """Render startup script (passed by the launcher with --python).
 
-Enables the amerika_render add-on, applies the VigilTech theme, and opens the Amerika workspace.
+Enables the amerika_render add-on, applies the VigilTech theme, and opens the Vigil Render workspace.
 Runs inside Blender; must never raise.
 """
 import os

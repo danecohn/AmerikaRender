@@ -403,14 +403,16 @@ def ensure_timers():
 
 
 def ensure_workspace(window=None):
-    """Create (once) and activate the 'Amerika' workspace: a 3D view with the Amerika tab open. GUI sessions only."""
+    """Use the Vigil Render template; keep workspaces in existing user files intact."""
     if bpy.app.background:
         return None
     wm = bpy.context.window_manager
     window = window or (wm.windows[0] if wm.windows else None)
     if window is None:
         return None
-    ws = bpy.data.workspaces.get('Render')
+    ws = bpy.data.workspaces.get('Vigil Render')
+    if ws is None and bpy.data.filepath:
+        ws = bpy.data.workspaces.get('Render') or bpy.data.workspaces.get('Amerika')
     if ws is None:
         base = bpy.data.workspaces.get('Layout') or window.workspace
         window.workspace = base
@@ -421,7 +423,7 @@ def ensure_workspace(window=None):
         if not new:
             return None
         ws = new[0]
-        ws.name = 'Render'
+        ws.name = 'Vigil Render'
         window.workspace = ws
         _layout_workspace(ws)
     else:

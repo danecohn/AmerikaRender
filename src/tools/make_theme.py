@@ -104,4 +104,4 @@ except Exception:
 os.makedirs(os.path.dirname(os.path.abspath(OUT)), exist_ok=True)
 import _rna_xml as rna_xml
 rna_xml.xml_file_write(bpy.context, OUT, bpy.types.USERPREF_MT_interface_theme_presets.preset_xml_map)
-print(f'amerika theme: {count} colours set, wrote {OUT}')
+print(f'Vigil Render theme: {count} colours set, wrote {OUT}')

@@ -1,0 +1,52 @@
+name: Verify Vigil Render in Blender
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths: ['src/**', 'tests/**', '.github/workflows/blender-assets.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  blender:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install graphical runtime libraries
+        run: sudo apt-get update && sudo apt-get install -y xvfb xauth libgl1 libegl1 libxi6 libxrender1 libxfixes3 libxrandr2 libxkbcommon0 libsm6 libice6 libxxf86vm1 libdbus-1-3
+      - name: Fetch the verified Blender baseline
+        run: |
+          curl -fL --retry 3 --max-time 180 https://download.blender.org/release/Blender5.0/blender-5.0.1-linux-x64.tar.xz -o "$RUNNER_TEMP/blender.tar.xz"
+          echo "8019580ee1b7262e505f4196a00237ccf743c88d205b38d34201510676e60b09  $RUNNER_TEMP/blender.tar.xz" | sha256sum -c -
+          tar -xJf "$RUNNER_TEMP/blender.tar.xz" -C "$RUNNER_TEMP"
+          echo "BLENDER=$RUNNER_TEMP/blender-5.0.1-linux-x64/blender" >> "$GITHUB_ENV"
+      - name: Run real Blender and pure Python tests
+        run: AMERIKA_TEST_BLENDER="$BLENDER" python -m unittest discover -s tests -v
+      - name: Generate the theme and startup in isolated resources
+        timeout-minutes: 5
+        run: |
+          export BLENDER_USER_CONFIG="$RUNNER_TEMP/render-config"
+          export BLENDER_USER_SCRIPTS="$RUNNER_TEMP/render-share/scripts"
+          export AMERIKA_RENDER_SHARE="$RUNNER_TEMP/render-share"
+          export AMERIKA_RENDER_PROJECT="$RUNNER_TEMP/render-project"
+          export XDG_RUNTIME_DIR="$RUNNER_TEMP/render-runtime"
+          export XDG_STATE_HOME="$RUNNER_TEMP/render-state"
+          export VIGIL_RENDER_SCREENSHOT="$GITHUB_WORKSPACE/generated/startup-workspace.png"
+          mkdir -p generated "$BLENDER_USER_CONFIG" "$BLENDER_USER_SCRIPTS/addons" "$AMERIKA_RENDER_SHARE/theme" "$XDG_RUNTIME_DIR"
+          ln -s "$GITHUB_WORKSPACE/src/amerika_render" "$BLENDER_USER_SCRIPTS/addons/amerika_render"
+          "$BLENDER" -b --factory-startup --python src/tools/make_theme.py -- generated/amerika.xml
+          cp generated/amerika.xml "$AMERIKA_RENDER_SHARE/theme/amerika.xml"
+          xvfb-run -a -s '-screen 0 1440x1000x24' "$BLENDER" --factory-startup --python src/startup/amerika_startup.py --python src/tools/make_startup.py
+          cp "$BLENDER_USER_CONFIG/startup.blend" generated/startup.blend
+          test -s generated/startup-workspace.png
+          "$BLENDER" -b --factory-startup generated/startup.blend --python-expr "import bpy; assert bpy.data.workspaces.get('Vigil Render'); print('Saved Vigil Render workspace verified')"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: Vigil-Render-generated-assets
+          path: generated/*
+          if-no-files-found: warn

@@ -2,9 +2,10 @@
 
     BLENDER_USER_RESOURCES=<tmp> blender --python startup/amerika_startup.py --python tools/make_startup.py
 
-Saves the home file (startup.blend) with the 'Amerika' workspace active, an empty-ish scene (camera + sun) and metric units.
+Saves the home file (startup.blend) with the 'Vigil Render' workspace active, an empty-ish scene (camera + sun) and metric units.
 Copy <tmp>/config/startup.blend to data/startup.blend.
 """
+import os
 import bpy
 
 
@@ -26,8 +27,13 @@ def save():
     for t in list(bpy.data.texts):
         if t.name == 'Render Review':
             t.clear()
+    assert bpy.data.workspaces.get('Vigil Render'), 'Vigil Render workspace was not created'
+    screenshot=os.environ.get('VIGIL_RENDER_SCREENSHOT')
+    if screenshot:
+        with bpy.context.temp_override(window=bpy.context.window_manager.windows[0]):
+            bpy.ops.screen.screenshot(filepath=screenshot)
     bpy.ops.wm.save_homefile()
-    print('amerika startup.blend saved')
+    print('Vigil Render startup template saved')
     bpy.ops.wm.quit_blender()
     return None
 

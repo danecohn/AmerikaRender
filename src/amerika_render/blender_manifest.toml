@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 id = "amerika_render"
-version = "3.1.1"
+version = "3.1.2"
 name = "Vigil Render"
 tagline = "Talk to Blender: an AI modelling assistant from Studio"
 maintainer = "VigilTech <noreply@vigiltech.org>"

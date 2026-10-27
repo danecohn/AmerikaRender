@@ -3,7 +3,7 @@ import json
 import os
 from pathlib import Path
 
-VERSION = '3.1.1'
+VERSION = '3.1.2'
 APP = 'render'
 DEFAULT_MODEL = 'claude-sonnet-5-5'
 MODELS = ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5']
